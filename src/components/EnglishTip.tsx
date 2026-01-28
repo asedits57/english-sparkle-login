@@ -1,12 +1,12 @@
 import { useState, useEffect } from "react";
-import { Lightbulb, Sparkles } from "lucide-react";
+import { Music2, Sparkles, Headphones, Mic } from "lucide-react";
 
 const tips = [
-  { type: "Did you know?", content: '"OK" is the most spoken word on the planet!' },
-  { type: "Word of the day", content: "Petrichor — the pleasant smell after rain" },
-  { type: "Grammar tip", content: "It's vs Its: It's = it is, Its = possession" },
-  { type: "Fun fact", content: "English adds a new word every 2 hours!" },
-  { type: "Vocabulary", content: "Sonder — realizing everyone has a complex life" },
+  { type: "Melody tip", content: '"Rhythm" has no traditional vowels - yet sounds beautiful!', icon: Music2 },
+  { type: "Word of the day", content: "Serenade — a piece of music sung or played at night", icon: Headphones },
+  { type: "Harmony hint", content: "Crescendo: gradually getting louder, like your confidence!", icon: Mic },
+  { type: "Fun fact", content: "The word 'music' comes from the Greek 'mousikē'", icon: Sparkles },
+  { type: "Vocabulary", content: "Mellifluous — sweet and musical, pleasant to hear", icon: Music2 },
 ];
 
 const EnglishTip = () => {
@@ -26,25 +26,44 @@ const EnglishTip = () => {
   }, []);
 
   const tip = tips[currentTip];
+  const Icon = tip.icon;
 
   return (
-    <div className="mt-8 p-4 rounded-2xl bg-muted/20 border border-glass-border backdrop-blur-sm">
+    <div className="mt-8 p-5 rounded-2xl bg-gradient-to-br from-muted/30 via-muted/20 to-primary/10 border border-glass-border backdrop-blur-sm relative overflow-hidden group">
+      {/* Animated background glow */}
+      <div 
+        className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700"
+        style={{
+          background: "radial-gradient(circle at 50% 50%, hsl(var(--primary) / 0.1), transparent 70%)",
+        }}
+      />
+      
       <div
-        className={`transition-all duration-500 ${
+        className={`relative transition-all duration-500 ${
           isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-2"
         }`}
       >
-        <div className="flex items-center gap-2 mb-2">
-          {tip.type === "Word of the day" ? (
-            <Sparkles size={16} className="text-accent" />
-          ) : (
-            <Lightbulb size={16} className="text-primary" />
-          )}
-          <span className="text-xs font-nunito font-bold uppercase tracking-wider text-muted-foreground">
+        <div className="flex items-center gap-2 mb-3">
+          <Icon size={16} className="text-primary" />
+          <span className="text-xs font-space font-semibold uppercase tracking-widest text-gradient">
             {tip.type}
           </span>
         </div>
-        <p className="font-nunito text-sm text-foreground/80">{tip.content}</p>
+        <p className="font-bricolage text-sm text-foreground/90 leading-relaxed">{tip.content}</p>
+      </div>
+
+      {/* Progress dots */}
+      <div className="flex justify-center gap-1.5 mt-4">
+        {tips.map((_, index) => (
+          <div
+            key={index}
+            className={`w-1.5 h-1.5 rounded-full transition-all duration-300 ${
+              index === currentTip 
+                ? "bg-primary w-4" 
+                : "bg-muted-foreground/30"
+            }`}
+          />
+        ))}
       </div>
     </div>
   );
