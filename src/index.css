@@ -2,7 +2,8 @@
 @tailwind components;
 @tailwind utilities;
 
-@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Fredoka:wght@400;500;600;700&display=swap');
+/* Stylish Premium Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&family=Bricolage+Grotesque:wght@400;500;600;700;800&family=Syne:wght@400;500;600;700;800&display=swap');
 
 @layer base {
   :root {
@@ -78,7 +79,7 @@
   }
 
   body {
-    @apply bg-background text-foreground font-nunito antialiased;
+    @apply bg-background text-foreground font-outfit antialiased;
     background: var(--gradient-background);
     min-height: 100vh;
   }
@@ -160,12 +161,20 @@
 }
 
 @layer utilities {
-  .font-nunito {
-    font-family: 'Nunito', sans-serif;
+  .font-outfit {
+    font-family: 'Outfit', sans-serif;
   }
 
-  .font-fredoka {
-    font-family: 'Fredoka', sans-serif;
+  .font-space {
+    font-family: 'Space Grotesk', sans-serif;
+  }
+
+  .font-bricolage {
+    font-family: 'Bricolage Grotesque', sans-serif;
+  }
+
+  .font-syne {
+    font-family: 'Syne', sans-serif;
   }
 
   .text-gradient {
@@ -173,6 +182,37 @@
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
+  }
+
+  .text-gradient-melody {
+    background: linear-gradient(135deg, hsl(280 100% 70%), hsl(320 100% 65%), hsl(350 100% 65%));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .text-gradient-verse {
+    background: linear-gradient(135deg, hsl(180 100% 60%), hsl(200 100% 65%), hsl(220 100% 70%));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .text-shimmer {
+    background: linear-gradient(90deg, hsl(var(--primary)), hsl(var(--secondary)), hsl(var(--accent)), hsl(var(--primary)));
+    background-size: 300% 100%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: text-shimmer 4s linear infinite;
+  }
+
+  .glow-text {
+    text-shadow: 
+      0 0 10px currentColor,
+      0 0 20px currentColor,
+      0 0 40px currentColor,
+      0 0 80px currentColor;
   }
 
   .animate-float {
@@ -215,6 +255,22 @@
 
   .animate-wiggle {
     animation: wiggle 0.5s ease-in-out;
+  }
+
+  .animate-morph {
+    animation: morph 8s ease-in-out infinite;
+  }
+
+  .animate-sparkle {
+    animation: sparkle 1.5s ease-in-out infinite;
+  }
+
+  .animate-orbit {
+    animation: orbit 15s linear infinite;
+  }
+
+  .animate-wave {
+    animation: wave 2s ease-in-out infinite;
   }
 }
 
@@ -319,5 +375,67 @@
   25%, 100% {
     opacity: 0;
     transform: translateY(-20px);
+  }
+}
+
+@keyframes text-shimmer {
+  0% {
+    background-position: 0% 50%;
+  }
+  100% {
+    background-position: 300% 50%;
+  }
+}
+
+@keyframes morph {
+  0%, 100% {
+    border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+  }
+  50% {
+    border-radius: 30% 60% 70% 40% / 50% 60% 30% 60%;
+  }
+}
+
+@keyframes sparkle {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.5;
+    transform: scale(1.2);
+  }
+}
+
+@keyframes orbit {
+  from {
+    transform: rotate(0deg) translateX(150px) rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg) translateX(150px) rotate(-360deg);
+  }
+}
+
+@keyframes wave {
+  0%, 100% {
+    transform: translateY(0) rotate(0deg);
+  }
+  25% {
+    transform: translateY(-5px) rotate(2deg);
+  }
+  75% {
+    transform: translateY(5px) rotate(-2deg);
+  }
+}
+
+@keyframes gradient-shift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
   }
 }
