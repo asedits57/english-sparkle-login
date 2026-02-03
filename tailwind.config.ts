@@ -14,10 +14,8 @@ export default {
     },
     extend: {
       fontFamily: {
-        outfit: ['Outfit', 'sans-serif'],
-        space: ['Space Grotesk', 'sans-serif'],
-        bricolage: ['Bricolage Grotesque', 'sans-serif'],
-        syne: ['Syne', 'sans-serif'],
+        nunito: ['Nunito', 'sans-serif'],
+        fredoka: ['Fredoka', 'sans-serif'],
       },
       colors: {
         border: "hsl(var(--border))",
